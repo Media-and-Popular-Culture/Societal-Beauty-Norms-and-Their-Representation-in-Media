@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Societal Beauty Norms and Their Representation in Media | A Four-Lens Gender Audit — Group CZA</title>
+  <meta name="description" content="A Gender and Society performance task by Group CZA — a four-lens audit tracing gender norms from everyday life to institutional change." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__mark">
+      <span class="preloader__ring"></span>
+      <span class="preloader__ring preloader__ring--2"></span>
+    </div>
+    <p class="preloader__text">Focusing the lens<span class="preloader__dots">...</span></p>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ===== Global Site Background ===== -->
+  <!-- The same animated gradient/blob backdrop from the hero, now fixed behind
+       every section so the whole page shares one continuous atmosphere. -->
+  <div class="site-bg" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+    <div class="site-bg__grid"></div>
+  </div>
+
+  <header>
+    <nav class="navbar" id="navbar">
+      <div class="navbar__inner container">
+
+        <a href="#home" class="navbar__brand">
+          <span class="navbar__brand-mark">CZA</span>
+          <span class="navbar__brand-text">Gender Audit</span>
+        </a>
+
+        <ul class="navbar__links" id="navLinks">
+          <li><a href="#home" class="navbar__link active-link">Home</a></li>
+          <li><a href="#about" class="navbar__link">About</a></li>
+          <li><a href="#issue" class="navbar__link">Issue</a></li>
+          <li><a href="#four-lens" class="navbar__link">Four Lens</a></li>
+          <li><a href="#pathway" class="navbar__link">Pathway</a></li>
+          <li><a href="#actions" class="navbar__link">Actions</a></li>
+          <li><a href="#evidence" class="navbar__link">Evidence</a></li>
+          <li><a href="#gallery" class="navbar__link">Gallery</a></li>
+          <li><a href="#team" class="navbar__link">Team</a></li>
+          <li><a href="#contact" class="navbar__link">Contact</a></li>
+        </ul>
+
+        <div class="navbar__actions">
+          <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch between dark and light theme">
+            <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </button>
+
+          <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" id="home" aria-label="Introduction">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="particles" id="particles"></div>
+
+        <div class="aperture" aria-hidden="true">
+          <span class="aperture__ring"></span>
+          <span class="aperture__ring"></span>
+          <span class="aperture__ring"></span>
+          <span class="aperture__ring"></span>
+        </div>
+      </div>
+
+      <div class="hero__content container">
+        <p class="eyebrow" data-animate>Gender and Society &mdash; Media and Popular Culture</p>
+
+        <h1 class="hero__title" data-animate>
+          Societal Beauty Norms and<br />
+          <span class="text-gradient">Their Representation in Media</span>
+        </h1>
+
+        <p class="hero__subtitle" id="typedSubtitle" data-animate>A Four-Lens Gender Audit</p>
+
+        <p class="hero__credits" data-animate>
+          <span class="hero__credit-item"><strong>Group Name:</strong> CZA</span>
+          <span class="hero__credit-divider" aria-hidden="true">&bull;</span>
+          <span class="hero__credit-item"><strong>Web Developer:</strong> Leeivan Jacinto</span>
+        </p>
+
+        <div class="hero__actions" data-animate>
+          <a href="#four-lens" class="btn btn--primary" data-ripple>Explore the Audit</a>
+          <a href="#evidence" class="btn btn--outline" data-ripple>View Evidence</a>
+        </div>
+
+        <div class="hero__stats" data-animate>
+          <div class="stat">
+            <span class="stat__number" data-count="4">0</span>
+            <span class="stat__label">Analytical Lenses</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" data-count="3">0</span>
+            <span class="stat__label">Institutional Actions</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" data-count="8">0</span>
+            <span class="stat__label">Evidence Sources</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" data-count="1">0</span>
+            <span class="stat__label">Shared Goal</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to About section">
+      </a>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">About the Project</p>
+          <h2 class="section-title" id="about-title">Why we built this audit</h2>
+          <p class="section-subtitle">
+            This project examines how media and popular culture influence the way people think about gender. Movies, television shows, advertisements, news, and social media often shape ideas about how women, men, and gender-diverse people should look, act, and live. Through this audit, we analyze how these messages can become social expectations that affect people's opportunities, treatment, and participation in society.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="glass-card about-card" data-animate>
+            <div class="about-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h3>What this project does</h3>
+            <p>
+              This webpage explores one gender-related issue in media and popular culture using the Four-Lens Gender Audit. We examine how media representations create gender norms, explain the concepts behind the issue, identify how these beliefs are learned through socialization, and analyze how they can lead to gender inequality and discrimination. Finally, we propose practical institutional actions that can help create more fair and inclusive media practices.
+            </p>
+          </article>
+
+          <article class="glass-card about-card" data-animate>
+            <div class="about-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3>Objectives</h3>
+            <ul class="check-list">
+              <li>Identify a real gender issue found in media and popular culture.</li>
+              <li>Analyze the issue using Chapters 1 to 4 of Gender and Society.</li>
+              <li>Show how media messages influence gender norms, socialization, and discrimination.</li>
+              <li>Present an integrated pathway that connects all four chapters.</li>
+              <li>Recommend realistic institutional actions based on evidence and credible sources.</li>
+            </ul>
+          </article>
+
+          <article class="glass-card about-card" data-animate>
+            <div class="about-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4 6 4c2.3 0 3.7 1.3 6 4 2.3-2.7 3.7-4 6-4 4 0 5.6 4 4 7.7C19.5 16.4 12 21 12 21z"/></svg>
+            </div>
+            <h3>Why Gender and Society matters</h3>
+            <p>
+              Gender shapes access to opportunity, safety, and voice. Studying it critically
+              helps us recognize patterns we normally overlook, and gives us a shared
+              vocabulary for asking institutions to do better.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="issue" aria-labelledby="issue-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Issue Snapshot</p>
+          <h2 class="section-title" id="issue-title">The issue we are auditing</h2>
+        </div>
+
+        <div class="glass-card issue-card" data-animate>
+          <div class="issue-card__tag">Media and Beauty Standards — Issue Title</div>
+          <h3 class="issue-card__title">Beauty Standards in Media</h3>
+          <p class="issue-card__desc">
+            Skin whitening advertisements remain common across television, social media, and digital platforms. Many of these advertisements suggest that fair skin leads to beauty, confidence, popularity, and success. By repeatedly presenting women with similar physical features, media creates a narrow beauty standard that influences how people view themselves and others. Although these advertisements are intended to promote products, they can also strengthen gender stereotypes and unrealistic expectations about appearance. This issue affects confidence, self-esteem, and equal representation, making it important to examine how media contributes to gender norms and how institutions can encourage more inclusive and respectful portrayals.
+          </p>
+          <div class="issue-card__meta">
+            <span class="pill">Media and Popular Culture</span>
+            <span class="pill">Women and Young People</span>
+            <span class="pill">National (Philippines)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="four-lens" aria-labelledby="four-lens-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Core Analysis</p>
+          <h2 class="section-title" id="four-lens-title">The Four-Lens Analysis</h2>
+          <p class="section-subtitle">
+            Every chapter looks at the same issue through a different aperture. Expand a
+            card to read the full analysis.
+          </p>
+        </div>
+
+        <div class="lens-grid">
+
+          <article class="glass-card lens-card" data-animate>
+            <div class="lens-card__head">
+              <span class="lens-card__index">Chapter 01</span>
+              <div class="lens-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+            </div>
+            <h3 class="lens-card__title">Gender and Society as a Field of Study<span>The Media &amp; Popular Culture Lens</span></h3>
+            <!-- EDIT HERE: short description -->
+            <p class="lens-card__desc">
+              How public advertising and film frame women through beauty and domestic
+              roles while reserving authority and leadership imagery for men — narrowing
+              beauty standards and sexualizing women in the process.
+            </p>
+            <div class="lens-card__more">
+              <div class="lens-card__more-inner">
+                <p><strong>Concrete Gendered Pattern:</strong> The representation of women in beauty and domestic roles vs. men in active, authority, or leadership roles within commercial ads and public media posts. This sometimes includes narrow beauty standards and sexualization.</p>
+
+                <p><strong>The Institution / Social Setting:</strong> Media and Popular Culture — specifically public advertising platforms, digital marketing, and film.</p>
+
+                <p><strong>Underlying Gender Norm:</strong> The societal expectation that a woman's primary value is tied to the shape of her body, being young, and domestic appeal, whereas a man's value is linked to dominance, capability, and leadership.</p>
+
+                <h4>Core Concern (Power / Participation / Safety)</h4>
+                <ul class="check-list">
+                  <li><strong>Power &amp; Participation:</strong> Women are not much seen in roles of structural authority or leadership in mainstream ads, reinforcing male dominance.</li>
+                  <li><strong>Safety &amp; Well-being:</strong> This treats mostly women, and objectification of women in public media reduces them to visual subjects, contributing to victim-blaming cultures and distorted body standards.</li>
+                </ul>
+
+                <h4>Media Analysis (Two Public Examples Framework)</h4>
+                <p><strong>Example 1 — Public Skincare/Beauty Product Advertisement</strong><br />
+                Visual Role: A female model framed in soft lighting, focusing heavily on facial perfection and flawless skin.<br />
+                Language/Tagline: Words focusing on "flawless," "desirable," or "youthful."<br />
+                Analysis: Reinforces beauty standards and sexualization by positioning women's primary contribution as visual appeal rather than capability.</p>
+
+                <p><strong>Example 2 — Public Corporate/Tech Advertisement</strong><br />
+                Visual Role: A male actor in a suit positioned central/front, giving directions or operating high-tech machinery while female characters sit in supporting or administrative roles.<br />
+                Language/Tagline: Phrases emphasizing "power," "control," "leadership," and "command."<br />
+                Analysis: Reproduces male dominance and leadership framing, systematically making female leadership invisible in technical or authoritative sectors.</p>
+
+                <h4>Institutional Condition &amp; Policy Anchors</h4>
+                <p><strong>Institutional Change Needed:</strong> Media regulatory boards and advertising standards councils must use non-sexist portrayal guidelines, promote diverse body representation, and mandate fair gender participation in media leadership roles.</p>
+
+                <p><strong>Reference Anchors:</strong></p>
+                <ul class="check-list">
+                  <li>Mateo, J. T. (2026). <em>Gender and Society: Instructional Material.</em></li>
+                  <li>Republic Act No. 9710 (Magna Carta of Women): Section 16 mandates the non-derogatory portrayal of women in media and advertising.</li>
+                  <li>Republic Act No. 11313 (Safe Spaces Act): Addresses gender-based sexual harassment in public and digital spaces.</li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn--text lens-card__toggle" type="button" data-ripple>
+              <span class="toggle-label">Read More</span>
+              <svg class="icon toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </article>
+
+          <article class="glass-card lens-card" data-animate>
+            <div class="lens-card__head">
+              <span class="lens-card__index">Chapter 02</span>
+              <div class="lens-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+            </div>
+            <h3 class="lens-card__title">Sex, Gender, SOGIE &amp; SOGIESC<span>The Conceptual Foundations Lens</span></h3>
+            <p class="lens-card__desc">
+              Distinguishing sex from gender, and unpacking SOGIE/SOGIESC, so the issue
+              is grounded in the right vocabulary instead of assumptions about identity.
+            </p>
+            <div class="lens-card__more">
+              <div class="lens-card__more-inner">
+                <p>This distinguishes sex from gender and separates the components of SOGIE and SOGIESC. Sex concerns biological and physiological characteristics; gender concerns socially constructed roles, expectations, behaviors, and power relations. Sexual orientation, gender identity, gender expression, and sex characteristics are related but are not interchangeable. A person's appearance or behavior must never be used to assume identity, attraction, or bodily characteristics.</p>
+
+                <h4>Gender Terms</h4>
+                <ul class="check-list">
+                  <li>Male</li>
+                  <li>Female</li>
+                  <li>Man</li>
+                  <li>Woman</li>
+                  <li>Boy</li>
+                  <li>Girl</li>
+                </ul>
+
+                <h4>Connecting the Issue to Chapter 2 Concepts</h4>
+                <p>The concepts of sex, gender, SOGIE, SOGIESC, and gender diversity are connected because they explain different parts of human identity. Sex describes biological characteristics, while gender explains social and personal experiences related to identity and expression. SOGIE and SOGIESC provide broader frameworks for understanding how people experience attraction, identity, expression, and physical characteristics.</p>
+                <p>These concepts are important in addressing issues such as gender discrimination, stereotypes, and inequality. Understanding gender diversity encourages respect for individual differences and supports the creation of inclusive communities where everyone can participate without fear of prejudice.</p>
+
+                <h4>Reference</h4>
+                <ul class="check-list">
+                  <li>Montilla Doble, J. (2022). Sexual orientation, gender identity, gender expression, and sex characteristics: A primer. UP Center for Women’s and Gender Studies. <a href="https://cws.up.edu.ph/?p=2441https://rainbowresearchhub.up.edu.ph/resources/sexual-orientation-gender-identity-gender-expression-and-sex-characteristics-a-primer/" target="_blank" rel="noopener noreferrer">cws.up.edu.ph/?p=2441https://rainbowresearchhub.up.edu.ph/resources/sexual-orientation-gender-identity-gender-expression-and-sex-characteristics-a-primer/</a></li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn--text lens-card__toggle" type="button" data-ripple>
+              <span class="toggle-label">Read More</span>
+              <svg class="icon toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </article>
+
+          <article class="glass-card lens-card" data-animate>
+            <div class="lens-card__head">
+              <span class="lens-card__index">Chapter 03</span>
+              <div class="lens-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+              </div>
+            </div>
+            <h3 class="lens-card__title">Gender Role Socialization<span>The Socialization Lens</span></h3>
+            <p class="lens-card__desc">
+              How family, school, peers, and media repeatedly teach — and reward or
+              punish — narrow beauty ideals until they feel like common sense.
+            </p>
+            <div class="lens-card__more">
+              <div class="lens-card__more-inner">
+                <p>Gender role socialization is the lifelong process through which people learn what society expects from women, men, and gender-diverse individuals. In the context of societal beauty norms, media and popular culture teach people that certain physical appearances are more attractive and socially acceptable than others.</p>
+
+                <h4>Agents of Socialization</h4>
+                <p>The main agents of socialization related to beauty norms are:</p>
+                <ul class="check-list">
+                  <li>Family</li>
+                  <li>Schools</li>
+                  <li>Peers</li>
+                  <li>Social media</li>
+                  <li>Television, movies, and advertisements</li>
+                  <li>Influencers and celebrities</li>
+                </ul>
+                <p>These agents repeatedly promote specific beauty ideals, shaping how people view themselves and others.</p>
+
+                <h4>Gender Script / Message</h4>
+                <p>The common message is that women should be slim, fair-skinned, youthful, and attractive, while men should be tall, muscular, and physically strong. These expectations become social norms that many people feel pressured to follow.</p>
+
+                <h4>Reinforcement (Reward for Conformity)</h4>
+                <p>People who match these beauty standards often receive:</p>
+                <ul class="check-list">
+                  <li>Positive attention and compliments</li>
+                  <li>Greater confidence and popularity</li>
+                  <li>Better opportunities in media, modeling, or even employment</li>
+                  <li>More positive treatment from others</li>
+                </ul>
+
+                <h4>Punishment for Nonconformity</h4>
+                <p>People who do not meet these beauty norms may experience:</p>
+                <ul class="check-list">
+                  <li>Body shaming</li>
+                  <li>Bullying or teasing</li>
+                  <li>Discrimination</li>
+                  <li>Lower self-esteem</li>
+                  <li>Social exclusion</li>
+                </ul>
+
+                <h4>Affected Group</h4>
+                <p>Societal beauty norms affect everyone, but they particularly impact:</p>
+                <ul class="check-list">
+                  <li>Women and girls</li>
+                  <li>Men and boys</li>
+                  <li>Gender-diverse individuals</li>
+                  <li>Teenagers and young adults who are highly exposed to social media</li>
+                </ul>
+
+                <h4>Life-Choice / Participation Effect</h4>
+                <p>Beauty norms can heavily influence people's confidence, education, careers, relationships, and participation in society. Some individuals may avoid social activities, job opportunities, or leadership roles because they feel like they do not meet society's expectations of beauty.</p>
+
+                <h4>Reference</h4>
+                <ul class="check-list">
+                  <li>Digennaro, S. &amp; Tescione, A. (2024). Scrolls and self-perception, navigating the link between social networks and body dissatisfaction in preadolescents and adolescents: a systematic review. <a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1390583/" target="_blank" rel="noopener noreferrer">frontiersin.org</a></li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn--text lens-card__toggle" type="button" data-ripple>
+              <span class="toggle-label">Read More</span>
+              <svg class="icon toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </article>
+
+          <article class="glass-card lens-card" data-animate>
+            <div class="lens-card__head">
+              <span class="lens-card__index">Chapter 04</span>
+              <div class="lens-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7l-3 6a4 4 0 0 0 6 0l-3-6z"/><path d="M19 7l-3 6a4 4 0 0 0 6 0l-3-6z"/><path d="M5 7h14"/></svg>
+              </div>
+            </div>
+            <h3 class="lens-card__title">Gender Inequality, Bias &amp; Discrimination<span>The Systemic Lens</span></h3>
+            <p class="lens-card__desc">
+              How a single repeated beauty ideal turns into unequal treatment — and
+              which laws, agencies, and reforms could close that gap.
+            </p>
+            <div class="lens-card__more">
+              <div class="lens-card__more-inner">
+                <h4>Gender Inequality</h4>
+                <p>Gender inequality happens when media and ads keep showing only one version of beauty: fair skin, slim bodies, and muscular physiques. People who don't look like this often get less attention or representation (WHO, n.d.).</p>
+
+                <h4>Gender Bias</h4>
+                <p>Gender bias is when certain looks are always shown as more attractive or successful. Over time, these repeated images make unrealistic standards seem normal (RA 9710, 2009).</p>
+
+                <h4>Discrimination</h4>
+                <p>Discrimination based on appearance happens when those who don't fit beauty standards are shown less positively or even negatively. Examples include skin-whitening ads, edited influencer posts, and campaigns that rarely show different body types or skin tones (OHCHR, n.d.).</p>
+
+                <h4>Type of Discrimination</h4>
+                <ul class="check-list">
+                  <li><strong>Structural discrimination</strong> — the system itself promotes narrow beauty standards.</li>
+                  <li><strong>Indirect discrimination</strong> — people outside these ideals are disadvantaged even if they are not openly excluded (WHO, n.d.; OHCHR, n.d.).</li>
+                </ul>
+
+                <h4>Institutional Actions (Immediate Protective Response)</h4>
+                <ul class="check-list">
+                  <li>Disclosure labels on digitally altered or edited images.</li>
+                </ul>
+
+                <h4>Structural / Institutional Actions</h4>
+                <ul class="check-list">
+                  <li><strong>Diversity in advertising</strong> — require campaigns to show different body types, skin tones, and appearances.</li>
+                  <li><strong>Media literacy in schools</strong> — teach students how to analyze beauty standards critically, so they can recognize bias and stereotypes.</li>
+                </ul>
+
+                <h4>Responsible Institutions</h4>
+                <ul class="check-list">
+                  <li><strong>Philippine Commission on Women (PCW)</strong> — lead agency for RA 9710.</li>
+                  <li><strong>Department of Education (DepEd)</strong> — for curriculum integration.</li>
+                  <li><strong>Ad Standards Council (ASC)</strong> — industry enforcer for disclosure and diversity standards.</li>
+                </ul>
+
+                <h4>References</h4>
+                <ul class="check-list">
+                  <li>Office of the United Nations High Commissioner for Human Rights. (n.d.). <a href="https://www.ohchr.org/" target="_blank" rel="noopener noreferrer">ohchr.org</a></li>
+                  <li>Republic Act No. 9710 (2009). Magna Carta of Women. <a href="https://lawphil.net/statutes/repacts/ra2009/ra97102009.html" target="_blank" rel="noopener noreferrer">lawphil.net</a></li>
+                  <li>World Health Organization. (n.d.). Gender. <a href="https://www.who.int/health-topics/gender" target="_blank" rel="noopener noreferrer">who.int</a></li>
+                </ul>
+              </div>
+            </div>
+            <button class="btn btn--text lens-card__toggle" type="button" data-ripple>
+              <span class="toggle-label">Read More</span>
+              <svg class="icon toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="pathway" aria-labelledby="pathway-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Synthesis</p>
+          <h2 class="section-title" id="pathway-title">The Integrated Pathway</h2>
+          <p class="section-subtitle">
+            How the four lenses connect into a single continuous chain — from a private
+            habit to a public, institutional response.
+          </p>
+        </div>
+
+        <div class="pathway">
+          <div class="pathway__track" aria-hidden="true"></div>
+
+          <div class="pathway__node glass-card" data-animate>
+            <span class="pathway__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+            <span class="pathway__step">Step 01 &middot; Chapter 01</span>
+            <h3>Gender Norm</h3>
+            <p>Cultural norms often promote the idea that women should be slim, fair-skinned, and youthful, while men should be tall, muscular, and physically strong.</p>
+          </div>
+
+          <span class="pathway__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+
+          <div class="pathway__node glass-card" data-animate>
+            <span class="pathway__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </span>
+            <span class="pathway__step">Step 02 &middot; Chapter 02</span>
+            <h3>Concepts / Diversity</h3>
+            <p>Beauty standards are social expectations, not biological requirements. People of all sexes, genders, and SOGIESC should be respected regardless of physical appearance.</p>
+          </div>
+
+          <span class="pathway__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+
+          <div class="pathway__node glass-card" data-animate>
+            <span class="pathway__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+            </span>
+            <span class="pathway__step">Step 03 &middot; Chapter 03</span>
+            <h3>Socialization</h3>
+            <p>Cultural influences and advertisements reinforce these beauty ideals, leading many people to believe they must conform to be accepted or valued.</p>
+          </div>
+
+          <span class="pathway__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+
+          <div class="pathway__node glass-card" data-animate>
+            <span class="pathway__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7l-3 6a4 4 0 0 0 6 0l-3-6z"/><path d="M19 7l-3 6a4 4 0 0 0 6 0l-3-6z"/><path d="M5 7h14"/></svg>
+            </span>
+            <span class="pathway__step">Step 04 &middot; Chapter 04</span>
+            <h3>Inequality &amp; Discrimination</h3>
+            <p>People who do not meet society's beauty standards may experience body shaming, bullying, discrimination, unequal opportunities, and lower self-esteem.</p>
+          </div>
+
+          <span class="pathway__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+
+          <div class="pathway__node pathway__node--outcome glass-card" data-animate>
+            <span class="pathway__dot pathway__dot--outcome" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+            </span>
+            <span class="pathway__step">Outcome</span>
+            <h3>Institutional Change</h3>
+            <p>To mitigate appearance-based bias, schools must teach body positivity, media outlets must diversify content, and workplaces must enforce strict, merit-based hiring policies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="actions" aria-labelledby="actions-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Recommendations</p>
+          <h2 class="section-title" id="actions-title">Institutional Actions</h2>
+          <p class="section-subtitle">
+            Three concrete, evidence-based actions institutions can take in response to
+            this audit.
+          </p>
+        </div>
+
+        <div class="actions-grid">
+
+          <article class="glass-card action-card" data-animate>
+            <span class="action-card__status">Recommended</span>
+            <div class="action-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
+            </div>
+            <h3>Immediate Protective Response</h3>
+            <p>
+              Advertising companies should immediately review advertisements before they are released to ensure that they do not promote unrealistic beauty standards or harmful gender stereotypes. Advertisements that encourage discrimination or imply that one appearance is superior should be revised or removed.
+            </p>
+          </article>
+
+          <article class="glass-card action-card" data-animate>
+            <span class="action-card__status">In Progress</span>
+            <div class="action-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8L13 21l-3 .5"/></svg>
+            </div>
+            <h3>Realistic Institutional Changes</h3>
+            <p>
+              <h4>Structural Change 1</h4>
+              <p>The Advertising Standards Council of the Philippines (ASC), together with media organizations, should strengthen gender-responsive advertising guidelines that promote diverse representation of different skin tones, body types, ages, and appearances. This can help reduce gender bias and encourage more inclusive media content.</p>
+              <h4>Structural Change 2</h4>
+              <p>Schools, media organizations, and government agencies should strengthen media literacy programs that teach people how to recognize unrealistic beauty standards, gender stereotypes, and misleading content in advertisements and social media. These programs can help audiences become more critical and responsible media consumers.</p>
+            </p>
+          </article>
+
+          <article class="glass-card action-card" data-animate>
+            <span class="action-card__status">Proposed</span>
+            <div class="action-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4z"/></svg>
+            </div>
+            <h3>Who Should Implement Them</h3>
+            <p>
+              <h4>Advertising Standards Council (ASC)</h4>
+              <p>Develops and enforces advertising standards to promote fair and responsible media content.</p>
+              <h4>Philippine Commission on Women (PCW)</h4>
+              <p>Promotes gender equality and supports policies that prevent gender discrimination.</p>
+              <h4>Department of Education (DepEd)</h4>
+              <p>Integrates media literacy and gender sensitivity into the school curriculum.</p>
+              <h4>Media companies and advertising agencies</h4>
+              <p>Ensure that advertisements represent diverse and inclusive standards of beauty.</p>
+              <h4>Television networks and social media platforms</h4>
+              <p>Monitor and regulate published content to reduce harmful stereotypes and discriminatory portrayals.</p>
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="evidence" aria-labelledby="evidence-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Documentation</p>
+          <h2 class="section-title" id="evidence-title">Evidence &amp; Sources</h2>
+          <p class="section-subtitle">
+            The research this audit draws from. Replace with your own citations and links.
+          </p>
+        </div>
+
+        <div class="evidence-grid">
+
+          <article class="glass-card evidence-card" data-animate>
+            <span class="evidence-card__type">Journal Article</span>
+            <h3>EDIT HERE — Source Title</h3>
+            <p>EDIT HERE — Author, publisher, and year. One or two sentences on what this source contributed to the audit.</p>
+            <a href="#" class="btn btn--outline btn--small" data-ripple target="_blank" rel="noopener noreferrer">
+              Visit Source
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </article>
+
+          <article class="glass-card evidence-card" data-animate>
+            <span class="evidence-card__type">Government Report</span>
+            <h3>EDIT HERE — Source Title</h3>
+            <p>EDIT HERE — Author, publisher, and year. One or two sentences on what this source contributed to the audit.</p>
+            <a href="#" class="btn btn--outline btn--small" data-ripple target="_blank" rel="noopener noreferrer">
+              Visit Source
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </article>
+
+          <article class="glass-card evidence-card" data-animate>
+            <span class="evidence-card__type">News Article</span>
+            <h3>EDIT HERE — Source Title</h3>
+            <p>EDIT HERE — Author, publisher, and year. One or two sentences on what this source contributed to the audit.</p>
+            <a href="#" class="btn btn--outline btn--small" data-ripple target="_blank" rel="noopener noreferrer">
+              Visit Source
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </article>
+
+          <article class="glass-card evidence-card" data-animate>
+            <span class="evidence-card__type">Statistical Data</span>
+            <h3>EDIT HERE — Source Title</h3>
+            <p>EDIT HERE — Author, publisher, and year. One or two sentences on what this source contributed to the audit.</p>
+            <a href="#" class="btn btn--outline btn--small" data-ripple target="_blank" rel="noopener noreferrer">
+              Visit Source
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="infographic" aria-labelledby="infographic-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Visual Summary</p>
+          <h2 class="section-title" id="infographic-title">Infographic</h2>
+          <p class="section-subtitle">Drop your group's infographic image into the frame below.</p>
+        </div>
+
+        <!--
+          CHANGE IMAGE HERE:
+          Replace the <div class="infographic-placeholder"> below with:
+            <img src="images/infographic.png" alt="Describe the infographic here" class="infographic-frame__img" />
+          Keep the surrounding .infographic-frame div so the styling/shadow stays intact.
+        -->
+        <div class="glass-card infographic-frame" data-animate>
+          <div class="infographic-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <p>CHANGE IMAGE HERE</p>
+            <span>Recommended size: 1600 × 2000px (portrait infographic)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Documentation</p>
+          <h2 class="section-title" id="gallery-title">Gallery</h2>
+          <p class="section-subtitle">Photos of the research process, interviews, or presentation.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-card" data-animate>
+            <div class="gallery-card__placeholder">
+              <img src="images/work1.jpg" alt="Group interviewing a student about gender norms on campus" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <figcaption>Team members work together to complete their assigned tasks, conduct research, analyze information, and contribute to the successful completion of the Gender Audit project.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-animate>
+            <div class="gallery-card__placeholder">
+              <img src="images/ss (6).jpg" alt="Group interviewing a student about gender norms on campus" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <figcaption>Team members collect information from credible sources, review the rubric, and gather evidence to support the Four-Lens Gender Audit.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-animate>
+            <div class="gallery-card__placeholder">
+              <img src="images/ss (2).png" alt="Group interviewing a student about gender norms on campus" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <figcaption>The web developer reviews and improves the HTML, CSS, and JavaScript code to ensure the webpage is organized, responsive, and easy to use.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-animate>
+            <div class="gallery-card__placeholder">
+              <img src="images/ss (3).png" alt="Group interviewing a student about gender norms on campus" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <figcaption>The team checks whether the website runs properly, tests its features on different devices, and fixes any errors before the final submission.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-animate>
+            <div class="gallery-card__placeholder">
+              <img src="images/ss (4).png" alt="Group interviewing a student about gender norms on campus" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <figcaption>Members work together to complete the Four-Lens Analysis by connecting the issue to gender concepts, socialization, inequality, and institutional actions.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-animate>
+            <div class="gallery-card__placeholder">
+              <img src="images/ss (5).png" alt="Group interviewing a student about gender norms on campus" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <figcaption>Our team discusses the project requirements, assigns responsibilities, and plans how to complete the Gender Audit webpage together.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reflection" aria-labelledby="reflection-title">
+      <div class="container container--narrow">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">In Our Own Words</p>
+          <h2 class="section-title" id="reflection-title">Reflection</h2>
+        </div>
+
+        <blockquote class="glass-card reflection-card" data-animate>
+          <svg class="reflection-card__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.17 6A5.17 5.17 0 0 0 2 11.17V18h6.83v-6.83H4.83A2.17 2.17 0 0 1 7 9v-3zm10 0A5.17 5.17 0 0 0 12 11.17V18h6.83v-6.83h-4A2.17 2.17 0 0 1 17 9V6z"/></svg>
+          <p>
+            Working on this Gender and Society project helped our group understand that gender issues are not only found in laws or workplaces but also in the media we see every day. While studying beauty standards in advertisements, we learned how repeated images and messages can shape the way people think about beauty, confidence, and success. We realized that media has a strong influence on how society views women, men, and gender-diverse people.
+          </p>
+          <p>
+            Using the Four-Lens Gender Audit helped us look at the issue from different perspectives instead of making quick conclusions. We learned how gender norms are formed, how they are passed through media and society, and how they can lead to bias, stereotypes, and discrimination. We also understood that institutions such as media companies, schools, government agencies, and advertisers have an important role in promoting fair and respectful representation.
+          </p>
+          <p>
+            Creating the webpage also improved our teamwork and technical skills. Each member had a specific responsibility, from researching information and analyzing the issue to designing the infographic and developing the website. By working together, reviewing each other's work, and following the grading rubric, we were able to create a project that was organized, informative, and visually appealing.
+          </p>
+          <p>
+            This project reminded us that small messages in advertisements and social media can have a lasting effect on people's beliefs and behavior. As students, we learned the importance of thinking critically about the media we consume and supporting a society where everyone is respected regardless of their appearance, gender, or identity. We hope this project encourages others to recognize harmful stereotypes and promote more inclusive and positive representation in media.
+          </p>
+          <footer>— Group CZA</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Good to Know</p>
+          <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="accordion" data-animate>
+          <!-- Accordion item — copy this block to add more questions -->
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" type="button" aria-expanded="false">
+                What does "four-lens" mean in this audit?
+                <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>The Four-Lens Gender Audit is a way of analyzing a gender issue from four connected perspectives. Chapter 1 identifies the gender pattern and social setting. Chapter 2 explains the issue using concepts of sex, gender, and SOGIESC. Chapter 3 examines how gender roles are learned through socialization. Chapter 4 analyzes gender inequality, bias, and discrimination, then proposes institutional actions that can create positive change.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" type="button" aria-expanded="false">
+                Why does Gender and Society matter in school?
+                <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>Gender and Society helps students understand how gender norms influence everyday life, education, work, and media. It encourages critical thinking about stereotypes, promotes respect for diversity, and prepares students to support fairness, equality, and inclusion in their communities.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" type="button" aria-expanded="false">
+                How were the evidence sources chosen?
+                <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>The evidence was gathered from publicly available advertisements, official government documents, course materials, and trusted international organizations. Sources were selected because they are credible, relevant to media and popular culture, and support the analysis with reliable information. Public examples were chosen to protect individual privacy while showing real gender issues.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" type="button" aria-expanded="false">
+                How can this audit inform real policy?
+                <svg class="icon accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>The findings of this audit can help media organizations, schools, advertisers, and government agencies recognize harmful gender stereotypes and improve policies. The recommendations encourage fair representation, inclusive advertising, media literacy, and stronger gender-responsive practices that promote equality and reduce discrimination.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="team" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <p class="eyebrow">Group CZA</p>
+          <h2 class="section-title" id="team-title">Team Members</h2>
+          <p class="section-subtitle">A dedicated member of Group CZA who contributes ideas, teamwork, and effort to complete the Gender and Society project successfully.</p>
+        </div>
+
+        <div class="team-grid">
+
+          <article class="glass-card team-card" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><img src="images/cadiz.jpg" alt="Photo of Cadiz Ephraim Eldrich" /></div>
+            <h3 class="team-card__name">Cadiz, Ephraim Eldrich</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:ephraim.t.cadiz@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/ephraim.eldrich.cadiz" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><span>ZK</span></div>
+            <h3 class="team-card__name">Zamora, Kurt Zyder</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:kurtzyder.q.zamora@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/krtZyder" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><img src="images/jacinto.jpg" alt="Photo of Lee Ivan Jacinto" /></div>
+            <h3 class="team-card__name">Jacinto, Lee Ivan</h3>
+            <p class="team-card__role">Web Developer</p>
+            <div class="team-card__socials">
+              <a href="mailto:leeivan.d.jacinto@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/share/17ojmm6ZCX/?mibextid=wwXIfr" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card team-card--lead" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><img src="images/aban.jpg" alt="Photo of Joel Aban" /></div>
+            <h3 class="team-card__name">Aban, Joel</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:joel.g.aban@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/merryxmasaban" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card team-card--lead" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><span>OR</span></div>
+            <h3 class="team-card__name">Oriente, Rose Ann</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:roseann.d.oriente@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/mi.roseann.29" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card team-card--lead" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><span>TJ</span></div>
+            <h3 class="team-card__name">Tomas, Justin</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:justinrein.tomas@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/justinrein.tomas" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card team-card--lead" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><span>ML</span></div>
+            <h3 class="team-card__name">Martinez, LV</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:lovely.m.martinez@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/lovelymartinez29" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+
+          <article class="glass-card team-card team-card--lead" data-animate>
+            <div class="team-card__photo" aria-hidden="true"><span>MC</span></div>
+            <h3 class="team-card__name">Maniquiz, Chealsea</h3>
+            <p class="team-card__role">Researcher</p>
+            <div class="team-card__socials">
+              <a href="mailto:chealsea.m.maniquiz@isu.edu.ph" aria-label="Email" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+              <a href="https://www.facebook.com/chealsea.eza" aria-label="Facebook" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4v4h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v6h-4v-6H8v-4h3V8a5 5 0 0 1 5-5z"/></svg></a>
+              <a href="#" aria-label="Instagram" data-ripple><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="glass-card contact-card" data-animate>
+          <div class="contact-card__text">
+            <p class="eyebrow">Get in Touch</p>
+            <h2 class="section-title" id="contact-title">Questions about the audit?</h2>
+            <p class="section-subtitle">
+              Reach out to Group CZA or the web developer for anything about this
+              performance task.
+            </p>
+          </div>
+          <div class="contact-card__actions">
+            <button class="btn btn--primary" id="copyEmailBtn" type="button" data-ripple data-email="leeivan.d.jacinto@isu.edu.ph">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+              Copy Email Address
+            </button>
+            <a href="#team" class="btn btn--outline" data-ripple>Meet the Team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="navbar__brand-mark">CZA</span>
+        <p>Gender and Society &mdash; Performance Task</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#four-lens">Four Lens</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#team">Team</a>
+      </nav>
+
+      <div class="footer__meta">
+        <p>Web Developer: Leeivan Jacinto</p>
+        <p>&copy; <span id="currentYear"></span> Group CZA. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
