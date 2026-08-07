@@ -64,11 +64,6 @@
             <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
           </button>
 
-          <button class="icon-btn" id="accountBtn" type="button" aria-label="Account">
-            <svg class="icon icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            <svg class="icon icon-admin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v5.2c0 5-3.4 8.7-8 10.3-4.6-1.6-8-5.3-8-10.3V5.5L12 2z"/></svg>
-          </button>
-
           <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
             <span></span><span></span><span></span>
           </button>
@@ -980,23 +975,6 @@
             </button>
             <a href="#team" class="btn btn--outline" data-ripple>Meet the Team</a>
           </div>
-
-          <form class="contact-card__form" id="messageForm" data-animate>
-            <p class="eyebrow">Or leave us a message</p>
-            <div class="field">
-              <span class="field__label">Name</span>
-              <input type="text" id="messageName" required />
-            </div>
-            <div class="field">
-              <span class="field__label">Email</span>
-              <input type="email" id="messageEmail" required />
-            </div>
-            <div class="field">
-              <span class="field__label">Message</span>
-              <textarea id="messageBody" rows="4" required></textarea>
-            </div>
-            <button class="btn btn--primary" type="submit" data-ripple>Send Message</button>
-          </form>
         </div>
       </div>
     </section>
@@ -1029,89 +1007,6 @@
   </button>
 
   <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
-
-  <!-- ============================ Auth Modal ============================ -->
-  <div class="modal-overlay" id="authModal" aria-hidden="true">
-    <div class="modal glass-card" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
-      <button class="modal__close" id="authModalClose" type="button" aria-label="Close">&times;</button>
-
-      <div id="authView">
-        <div class="modal__tabs" role="tablist">
-          <button class="modal__tab is-active" id="authTabLogin" type="button" role="tab" aria-selected="true">Log In</button>
-          <button class="modal__tab" id="authTabRegister" type="button" role="tab" aria-selected="false">Register</button>
-        </div>
-
-        <p class="eyebrow">Group CZA &mdash; Gender Audit</p>
-        <h2 class="modal__title" id="authModalTitle">Welcome</h2>
-        <p class="modal__subtitle">An account isn't required to browse the site &mdash; you're welcome to skip this.</p>
-
-        <form class="auth-form" id="loginForm">
-          <label class="field">
-            <span class="field__label">Username</span>
-            <input type="text" id="loginUsername" autocomplete="username" required />
-          </label>
-          <label class="field">
-            <span class="field__label">Password</span>
-            <input type="password" id="loginPassword" autocomplete="current-password" required />
-          </label>
-          <p class="auth-form__error" id="loginError" role="alert"></p>
-          <button class="btn btn--primary" type="submit" data-ripple>Log In</button>
-        </form>
-
-        <form class="auth-form" id="registerForm" hidden>
-          <label class="field">
-            <span class="field__label">Username</span>
-            <input type="text" id="registerUsername" autocomplete="username" required />
-          </label>
-          <label class="field">
-            <span class="field__label">Email</span>
-            <input type="email" id="registerEmail" autocomplete="email" required />
-          </label>
-          <label class="field">
-            <span class="field__label">Password</span>
-            <input type="password" id="registerPassword" autocomplete="new-password" minlength="4" required />
-          </label>
-          <p class="auth-form__error" id="registerError" role="alert"></p>
-          <button class="btn btn--primary" type="submit" data-ripple>Create Account</button>
-        </form>
-
-        <button class="btn btn--text auth-skip" id="authSkipBtn" type="button">Skip for now &rarr;</button>
-      </div>
-
-      <div id="authLoggedInView" hidden>
-        <p class="eyebrow">Signed in</p>
-        <h2 class="modal__title">Hey, <span id="authLoggedInName"></span></h2>
-        <p class="modal__subtitle">You're logged in on this device.</p>
-        <button class="btn btn--outline" id="logoutBtn" type="button" data-ripple>Log Out</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================== Admin Modal ============================ -->
-  <div class="modal-overlay" id="adminModal" aria-hidden="true">
-    <div class="modal glass-card modal--wide" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
-      <button class="modal__close" id="adminModalClose" type="button" aria-label="Close">&times;</button>
-
-      <p class="eyebrow">Admin Mode</p>
-      <h2 class="modal__title" id="adminModalTitle">Site Administration</h2>
-
-      <div class="modal__tabs" role="tablist">
-        <button class="modal__tab is-active" id="adminTabUsers" type="button" role="tab" aria-selected="true">Registered Users</button>
-        <button class="modal__tab" id="adminTabMessages" type="button" role="tab" aria-selected="false">Messages</button>
-      </div>
-
-      <div class="admin-panel" id="adminPanelUsers">
-        <p class="admin-panel__hint">Passwords are never stored or shown in plain text &mdash; only a one-way hash is kept, purely to verify a login. From here you can suspend, block, or remove an account.</p>
-        <div class="admin-table" id="adminUsersTable"></div>
-      </div>
-
-      <div class="admin-panel" id="adminPanelMessages" hidden>
-        <div class="admin-table" id="adminMessagesTable"></div>
-      </div>
-
-      <button class="btn btn--outline" id="adminLogoutBtn" type="button" data-ripple>Log Out of Admin Mode</button>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
