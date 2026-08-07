@@ -397,6 +397,348 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ===================== 19. Auth, Guest Access & Admin Mode ======================
+     A lightweight account system for a static, no-backend site.
+
+     IMPORTANT LIMITATIONS (read before relying on this in production):
+     - There is no server here, so everything is stored in THIS BROWSER's
+       localStorage. It's per-device: an account made on one visitor's phone
+       will not show up for another visitor, or in the admin panel on a
+       different device. Real cross-visitor accounts and a real admin
+       dashboard require a backend + database (e.g. a Vercel Serverless
+       Function talking to Supabase/Firebase/Postgres).
+     - Passwords are never stored or shown in plain text — only a SHA-256
+       hash is kept, purely to check a login attempt. The admin panel can
+       suspend, block or delete an account, but it cannot reveal anyone's
+       actual password.
+     - The admin login itself is a fixed username/password checked in this
+       file, which — like anything client-side — is technically readable by
+       anyone who views the page source. That's an inherent limit of a
+       static site with no backend; treat it as a light lock, not a vault.
+  ================================================================================= */
+  function initAuthSystem() {
+    const LS_USERS = 'gaUsers';
+    const LS_MESSAGES = 'gaMessages';
+    const LS_SESSION = 'gaSession';
+    const ADMIN_USERNAME = 'itsnxvi';
+    const ADMIN_PASSWORD = 'akoadmin';
+
+    const accountBtn = document.getElementById('accountBtn');
+    const authModal = document.getElementById('authModal');
+    const adminModal = document.getElementById('adminModal');
+    if (!accountBtn || !authModal || !adminModal) return;
+
+    const authModalClose = document.getElementById('authModalClose');
+    const adminModalClose = document.getElementById('adminModalClose');
+    const authView = document.getElementById('authView');
+    const authLoggedInView = document.getElementById('authLoggedInView');
+    const authLoggedInName = document.getElementById('authLoggedInName');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+
+    const authTabLogin = document.getElementById('authTabLogin');
+    const authTabRegister = document.getElementById('authTabRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginError = document.getElementById('loginError');
+    const registerError = document.getElementById('registerError');
+    const authSkipBtn = document.getElementById('authSkipBtn');
+
+    const adminTabUsers = document.getElementById('adminTabUsers');
+    const adminTabMessages = document.getElementById('adminTabMessages');
+    const adminPanelUsers = document.getElementById('adminPanelUsers');
+    const adminPanelMessages = document.getElementById('adminPanelMessages');
+    const adminUsersTable = document.getElementById('adminUsersTable');
+    const adminMessagesTable = document.getElementById('adminMessagesTable');
+
+    const messageForm = document.getElementById('messageForm');
+
+    /* ---------- storage helpers ---------- */
+    const getUsers = () => JSON.parse(localStorage.getItem(LS_USERS) || '[]');
+    const saveUsers = (list) => localStorage.setItem(LS_USERS, JSON.stringify(list));
+    const getMessages = () => JSON.parse(localStorage.getItem(LS_MESSAGES) || '[]');
+    const saveMessages = (list) => localStorage.setItem(LS_MESSAGES, JSON.stringify(list));
+    const getSession = () => JSON.parse(localStorage.getItem(LS_SESSION) || 'null');
+    const setSession = (session) => localStorage.setItem(LS_SESSION, JSON.stringify(session));
+
+    async function hashPassword(plain) {
+      const bytes = new TextEncoder().encode(plain);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    /* ---------- modal open/close ---------- */
+    const openModal = (modal) => { modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); };
+    const closeModal = (modal) => { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); };
+
+    function switchAuthTab(tab) {
+      const isLogin = tab === 'login';
+      authTabLogin.classList.toggle('is-active', isLogin);
+      authTabRegister.classList.toggle('is-active', !isLogin);
+      authTabLogin.setAttribute('aria-selected', String(isLogin));
+      authTabRegister.setAttribute('aria-selected', String(!isLogin));
+      loginForm.hidden = !isLogin;
+      registerForm.hidden = isLogin;
+      loginError.textContent = '';
+      registerError.textContent = '';
+    }
+    authTabLogin.addEventListener('click', () => switchAuthTab('login'));
+    authTabRegister.addEventListener('click', () => switchAuthTab('register'));
+
+    function openAccount() {
+      const session = getSession();
+      if (session && session.type === 'admin') {
+        renderAdminPanel();
+        openModal(adminModal);
+        return;
+      }
+      if (session && session.type === 'user') {
+        authView.hidden = true;
+        authLoggedInView.hidden = false;
+        authLoggedInName.textContent = session.username;
+      } else {
+        authView.hidden = false;
+        authLoggedInView.hidden = true;
+        switchAuthTab('login');
+      }
+      openModal(authModal);
+    }
+
+    accountBtn.addEventListener('click', openAccount);
+    authModalClose.addEventListener('click', () => closeModal(authModal));
+    adminModalClose.addEventListener('click', () => closeModal(adminModal));
+    [authModal, adminModal].forEach((modal) => {
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(modal); });
+    });
+
+    authSkipBtn.addEventListener('click', () => {
+      if (!getSession()) setSession({ type: 'guest' });
+      closeModal(authModal);
+    });
+
+    /* ---------- nav button appearance ---------- */
+    function refreshAccountButton() {
+      const session = getSession();
+      const isAdmin = !!(session && session.type === 'admin');
+      accountBtn.classList.toggle('is-admin', isAdmin);
+      if (isAdmin) accountBtn.setAttribute('aria-label', 'Admin mode');
+      else if (session && session.type === 'user') accountBtn.setAttribute('aria-label', `Account: ${session.username}`);
+      else accountBtn.setAttribute('aria-label', 'Log in');
+    }
+
+    /* ---------- login ---------- */
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.textContent = '';
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        setSession({ type: 'admin' });
+        refreshAccountButton();
+        closeModal(authModal);
+        showToast('Welcome back — admin mode unlocked');
+        loginForm.reset();
+        return;
+      }
+
+      const user = getUsers().find((u) => u.username.toLowerCase() === username.toLowerCase());
+      if (!user) { loginError.textContent = 'No account found with that username.'; return; }
+      if (user.status === 'blocked') { loginError.textContent = 'This account has been blocked.'; return; }
+      if (user.status === 'suspended') { loginError.textContent = 'This account is currently suspended.'; return; }
+
+      const hash = await hashPassword(password);
+      if (hash !== user.passHash) { loginError.textContent = 'Incorrect password.'; return; }
+
+      setSession({ type: 'user', username: user.username });
+      refreshAccountButton();
+      closeModal(authModal);
+      showToast(`Welcome back, ${user.username}`);
+      loginForm.reset();
+    });
+
+    /* ---------- register ---------- */
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      registerError.textContent = '';
+      const username = document.getElementById('registerUsername').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+
+      if (username.toLowerCase() === ADMIN_USERNAME) { registerError.textContent = 'That username is reserved.'; return; }
+      const users = getUsers();
+      if (users.some((u) => u.username.toLowerCase() === username.toLowerCase())) {
+        registerError.textContent = 'That username is already taken.';
+        return;
+      }
+
+      const passHash = await hashPassword(password);
+      users.push({ username, email, passHash, status: 'active', createdAt: Date.now() });
+      saveUsers(users);
+
+      setSession({ type: 'user', username });
+      refreshAccountButton();
+      closeModal(authModal);
+      showToast('Account created — you\'re logged in');
+      registerForm.reset();
+    });
+
+    /* ---------- logout ---------- */
+    logoutBtn.addEventListener('click', () => {
+      setSession({ type: 'guest' });
+      refreshAccountButton();
+      closeModal(authModal);
+      showToast('Logged out');
+    });
+    adminLogoutBtn.addEventListener('click', () => {
+      setSession({ type: 'guest' });
+      refreshAccountButton();
+      closeModal(adminModal);
+      showToast('Logged out of admin mode');
+    });
+
+    /* ---------- admin: tabs ---------- */
+    function switchAdminTab(tab) {
+      const isUsers = tab === 'users';
+      adminTabUsers.classList.toggle('is-active', isUsers);
+      adminTabMessages.classList.toggle('is-active', !isUsers);
+      adminTabUsers.setAttribute('aria-selected', String(isUsers));
+      adminTabMessages.setAttribute('aria-selected', String(!isUsers));
+      adminPanelUsers.hidden = !isUsers;
+      adminPanelMessages.hidden = isUsers;
+    }
+    adminTabUsers.addEventListener('click', () => switchAdminTab('users'));
+    adminTabMessages.addEventListener('click', () => switchAdminTab('messages'));
+
+    /* ---------- admin: render users ---------- */
+    function renderAdminUsers() {
+      const users = getUsers();
+      if (!users.length) {
+        adminUsersTable.innerHTML = '<p class="admin-row__empty">No visitors have registered an account on this device yet.</p>';
+        return;
+      }
+      adminUsersTable.innerHTML = users.map((u, i) => `
+        <div class="admin-row">
+          <div class="admin-row__main">
+            <div class="admin-row__title">${escapeHtml(u.username)} <span class="status-badge status-badge--${u.status}">${u.status}</span></div>
+            <div class="admin-row__meta">${escapeHtml(u.email || 'no email on file')} &middot; joined ${new Date(u.createdAt).toLocaleDateString()}</div>
+          </div>
+          <div class="admin-row__actions">
+            ${u.status === 'suspended'
+              ? `<button data-action="reinstate" data-index="${i}">Reinstate</button>`
+              : `<button data-action="suspend" data-index="${i}">Suspend</button>`}
+            ${u.status === 'blocked'
+              ? `<button data-action="unblock" data-index="${i}">Unblock</button>`
+              : `<button data-action="block" data-index="${i}">Block</button>`}
+            <button class="is-danger" data-action="delete" data-index="${i}">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    adminUsersTable.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if (!btn) return;
+      const users = getUsers();
+      const idx = Number(btn.getAttribute('data-index'));
+      const user = users[idx];
+      if (!user) return;
+      const action = btn.getAttribute('data-action');
+
+      if (action === 'suspend') user.status = 'suspended';
+      if (action === 'reinstate') user.status = 'active';
+      if (action === 'block') user.status = 'blocked';
+      if (action === 'unblock') user.status = 'active';
+      if (action === 'delete') {
+        users.splice(idx, 1);
+        saveUsers(users);
+        renderAdminUsers();
+        showToast('Account deleted');
+        return;
+      }
+      saveUsers(users);
+      renderAdminUsers();
+      showToast(`Account ${action === 'reinstate' || action === 'unblock' ? 'restored' : action + 'ed'}`);
+    });
+
+    /* ---------- admin: render messages ---------- */
+    function renderAdminMessages() {
+      const messages = getMessages();
+      if (!messages.length) {
+        adminMessagesTable.innerHTML = '<p class="admin-row__empty">No messages submitted on this device yet.</p>';
+        return;
+      }
+      adminMessagesTable.innerHTML = messages.slice().reverse().map((m, i) => {
+        const realIndex = messages.length - 1 - i;
+        return `
+        <div class="admin-row">
+          <div class="admin-row__main">
+            <div class="admin-row__title">${escapeHtml(m.name)}</div>
+            <div class="admin-row__meta">${escapeHtml(m.email)} &middot; ${new Date(m.date).toLocaleString()}</div>
+            <div class="admin-row__meta">${escapeHtml(m.message)}</div>
+          </div>
+          <div class="admin-row__actions">
+            <button data-copy-email="${escapeHtml(m.email)}">Copy Email</button>
+            <button class="is-danger" data-delete-message="${realIndex}">Delete</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    adminMessagesTable.addEventListener('click', async (e) => {
+      const copyBtn = e.target.closest('button[data-copy-email]');
+      if (copyBtn) {
+        const email = copyBtn.getAttribute('data-copy-email');
+        try { await navigator.clipboard.writeText(email); showToast(`Copied ${email}`); }
+        catch { showToast('Could not copy — email: ' + email); }
+        return;
+      }
+      const delBtn = e.target.closest('button[data-delete-message]');
+      if (delBtn) {
+        const messages = getMessages();
+        messages.splice(Number(delBtn.getAttribute('data-delete-message')), 1);
+        saveMessages(messages);
+        renderAdminMessages();
+      }
+    });
+
+    function renderAdminPanel() {
+      renderAdminUsers();
+      renderAdminMessages();
+      switchAdminTab('users');
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = String(str == null ? '' : str);
+      return div.innerHTML;
+    }
+
+    /* ---------- contact "message us" form ---------- */
+    if (messageForm) {
+      messageForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('messageName').value.trim();
+        const email = document.getElementById('messageEmail').value.trim();
+        const body = document.getElementById('messageBody').value.trim();
+        if (!name || !email || !body) return;
+
+        const messages = getMessages();
+        messages.push({ name, email, message: body, date: Date.now() });
+        saveMessages(messages);
+
+        messageForm.reset();
+        showToast('Message sent — thanks for reaching out!');
+      });
+    }
+
+    /* ---------- first-visit prompt ---------- */
+    refreshAccountButton();
+    if (!getSession()) {
+      setTimeout(() => openAccount(), 1400);
+    }
+  }
+
   /* ================================== Init ========================================== */
   // Every feature is wired up here. Comment a line out to disable that feature.
   initPreloader();
@@ -416,4 +758,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initParallax();
   initCustomCursor();
+  initAuthSystem();
 });
