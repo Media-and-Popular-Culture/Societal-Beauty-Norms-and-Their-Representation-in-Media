@@ -1089,21 +1089,61 @@ html { scrollbar-color: var(--color-accent-purple) transparent; scrollbar-width:
 
 .lens-card__desc { margin-bottom: 0.6rem; }
 
-/* Expandable "read more" content — collapsed by default */
+/* Expandable "read more" content — fixed-height scrollable box */
 .lens-card__more {
-  display: grid;
-  grid-template-rows: 0fr;
+  display: block;
+  max-height: 0;
+  overflow: hidden;
   opacity: 0;
-  transition: grid-template-rows var(--transition-slow), opacity var(--transition-slow);
+  transition: max-height var(--transition-slow), opacity var(--transition-slow);
 }
-.lens-card__more > * { overflow: hidden; padding-top: 0; }
+
+.lens-card__more > * {
+  padding-top: 0;
+}
+
 .lens-card.is-expanded .lens-card__more {
-  grid-template-rows: 1fr;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
   opacity: 1;
   margin-bottom: 0.8rem;
+  padding: 0.4rem 0.7rem 0.4rem 0;
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent-purple) transparent;
 }
-.lens-card.is-expanded .lens-card__more > * { padding-top: 0.4rem; }
-.lens-card__more { display: grid; }
+
+.lens-card.is-expanded .lens-card__more > * {
+  padding-top: 0;
+}
+
+/* Chrome, Edge, Safari scrollbar */
+.lens-card.is-expanded .lens-card__more::-webkit-scrollbar {
+  width: 7px;
+}
+
+.lens-card.is-expanded .lens-card__more::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.lens-card.is-expanded .lens-card__more::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-blue),
+    var(--color-accent-purple)
+  );
+  border-radius: 999px;
+}
+
+.lens-card.is-expanded .lens-card__more::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-purple),
+    var(--color-accent-pink)
+  );
+}
 
 /* Longer, multi-paragraph "read more" content (e.g. a full chapter write-up) */
 .lens-card__more-inner p {
