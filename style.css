@@ -411,7 +411,6 @@ html { scrollbar-color: var(--color-accent-purple) transparent; scrollbar-width:
   color: var(--color-accent-blue);
   font-size: 0.9rem;
 }
-.btn--text .toggle-icon { transition: transform var(--transition-base); }
 
 .btn--small {
   padding: 0.6em 1.2em;
@@ -1023,7 +1022,7 @@ html { scrollbar-color: var(--color-accent-purple) transparent; scrollbar-width:
 /* ================================ Four Lens ==================================== */
 .lens-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-md);
 }
 .lens-card__head {
@@ -1089,21 +1088,13 @@ html { scrollbar-color: var(--color-accent-purple) transparent; scrollbar-width:
 
 .lens-card__desc { margin-bottom: 0.6rem; }
 
-/* Expandable "read more" content — collapsed by default */
+/* Full chapter content — always visible (no expand/collapse) so the whole
+   card can be screenshotted or printed as a complete document. */
 .lens-card__more {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows var(--transition-slow), opacity var(--transition-slow);
+  margin-top: 1rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed var(--color-border);
 }
-.lens-card__more > * { overflow: hidden; padding-top: 0; }
-.lens-card.is-expanded .lens-card__more {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  margin-bottom: 0.8rem;
-}
-.lens-card.is-expanded .lens-card__more > * { padding-top: 0.4rem; }
-.lens-card__more { display: grid; }
 
 /* Longer, multi-paragraph "read more" content (e.g. a full chapter write-up) */
 .lens-card__more-inner p {
@@ -1124,8 +1115,6 @@ html { scrollbar-color: var(--color-accent-purple) transparent; scrollbar-width:
 .lens-card__more-inner .check-list li {
   font-size: 0.92rem;
 }
-
-.lens-card.is-expanded .toggle-icon { transform: rotate(180deg); }
 
 /* ============================== Integrated Pathway ============================== */
 /* Layout: 5 step-cards + 4 small arrow connectors between them, arranged in a
